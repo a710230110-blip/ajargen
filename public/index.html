@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AjarGen — Modul Ajar & RPP Otomatis Berbasis AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 34c7-2 9-10 14-15 4-4 10-6 14-5-1 8-6 20-19 22-4 1-7 0-9-2z" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M16 16c-1-4 1-8 5-10 0 4-1 7-5 10z" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand__name">AjarGen</div>
+          <div class="brand__tag">Modul Ajar & RPP Otomatis Berbasis AI</div>
+        </div>
+      </div>
+      <div class="topbar__actions">
+        <button class="btn btn--ghost" id="btnDemo">Isi Contoh</button>
+        <button class="btn btn--ghost" id="btnReset">Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero__left">
+        <h1>Rancang Modul Ajar & RPP <span class="grad">lebih cepat</span>.</h1>
+        <p>
+          3 langkah sederhana: isi identitas, atur detail pembelajaran, lalu generate dokumen.
+          Kamu bisa minta AI membuat CP & TP otomatis.
+        </p>
+      </div>
+      <div class="hero__right">
+        <div class="stat">
+          <div class="stat__num">3</div>
+          <div class="stat__label">Langkah</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">AI</div>
+          <div class="stat__label">CP / TP / RPP</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">DOCX</div>
+          <div class="stat__label">Export</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wizard">
+      <div class="stepper" aria-label="Langkah">
+        <div class="step" data-step="1">
+          <div class="step__dot">1</div>
+          <div class="step__meta">
+            <div class="step__title">Identitas</div>
+            <div class="step__desc">Data dasar modul/RPP</div>
+          </div>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step__dot">2</div>
+          <div class="step__meta">
+            <div class="step__title">Detail</div>
+            <div class="step__desc">Kurikulum, CP, TP, profil</div>
+          </div>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step__dot">3</div>
+          <div class="step__meta">
+            <div class="step__title">Generate</div>
+            <div class="step__desc">Preview & unduh DOCX</div>
+          </div>
+        </div>
+        <div class="stepper__bar" aria-hidden="true"><div class="stepper__barFill" id="barFill"></div></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <section class="panel" id="panel1">
+        <div class="panel__head">
+          <h2>Langkah 1 — Identitas Modul/RPP</h2>
+          <p>Lengkapi data inti. Semakin lengkap, output AI semakin akurat.</p>
+        </div>
+
+        <div class="grid grid--2">
+          <label class="field">
+            <span>Nama Sekolah</span>
+            <input id="namaSekolah" placeholder="Contoh: SMK Negeri 1 ..." />
+          </label>
+          <label class="field">
+            <span>Nama Penyusun (Guru)</span>
+            <input id="penyusun" placeholder="Contoh: Arahendra Yoga Prawira" />
+          </label>
+
+          <label class="field">
+            <span>Jenjang / Fase</span>
+            <select id="jenjangFase">
+              <option value="">Pilih...</option>
+              <option>SD / Fase A</option>
+              <option>SD / Fase B</option>
+              <option>SD / Fase C</option>
+              <option>SMP / Fase D</option>
+              <option>SMA / Fase E</option>
+              <option>SMA / Fase F</option>
+              <option>SMK / Fase E</option>
+              <option>SMK / Fase F</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Kelas</span>
+            <input id="kelas" placeholder="Contoh: X / 10" />
+          </label>
+
+          <label class="field">
+            <span>Jumlah Pertemuan</span>
+            <input id="pertemuan" placeholder="Contoh: 2" />
+          </label>
+          <label class="field">
+            <span>Alokasi Waktu / Pertemuan</span>
+            <input id="alokasiWaktu" placeholder="Contoh: 2 x 45 menit" />
+          </label>
+
+          <label class="field">
+            <span>Mata Pelajaran</span>
+            <input id="mataPelajaran" placeholder="Contoh: Informatika" />
+          </label>
+          <label class="field">
+            <span>Topik / Materi Pokok</span>
+            <input id="topik" placeholder="Contoh: Algoritma Dasar" />
+          </label>
+        </div>
+
+        <div class="panel__foot">
+          <button class="btn btn--primary" id="toStep2">Lanjut ke Langkah 2 →</button>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="panel" id="panel2" hidden>
+        <div class="panel__head">
+          <h2>Langkah 2 — Detail Pembelajaran</h2>
+          <p>Pilih fokus kurikulum, model pembelajaran, lalu buat CP & TP otomatis bila perlu.</p>
+        </div>
+
+        <div class="cards">
+          <button class="choice" id="temaDeep" type="button">
+            <div class="choice__title">Deep Learning</div>
+            <div class="choice__desc">Fokus pembelajaran mendalam, reflektif, dan bernalar.</div>
+          </button>
+          <button class="choice" id="temaCinta" type="button">
+            <div class="choice__title">Kurikulum Berbasis Cinta</div>
+            <div class="choice__desc">Fokus empati, nilai, dan relasi positif dalam kelas.</div>
+          </button>
+        </div>
+
+        <label class="field">
+          <span>Model Pembelajaran</span>
+          <select id="modelPembelajaran">
+            <option value="">Pilih...</option>
+            <option>Problem Based Learning (PBL)</option>
+            <option>Project Based Learning (PjBL)</option>
+            <option>Discovery Learning</option>
+            <option>Inquiry Learning</option>
+            <option>Cooperative Learning</option>
+            <option>Blended Learning</option>
+          </select>
+        </label>
+
+        <div class="grid grid--2">
+          <div class="field">
+            <span>Capaian Pembelajaran (CP)</span>
+            <div class="field__actions">
+              <button class="btn btn--soft" id="btnCP" type="button">Buatkan Otomatis (AI)</button>
+            </div>
+            <textarea id="cp" rows="6" placeholder="Tempel atau buat otomatis lewat AI..."></textarea>
+          </div>
+
+          <div class="field">
+            <span>Tujuan Pembelajaran (TP)</span>
+            <div class="field__actions">
+              <button class="btn btn--soft" id="btnTP" type="button">Buatkan Otomatis (AI)</button>
+            </div>
+            <textarea id="tp" rows="6" placeholder="Tempel atau buat otomatis lewat AI..."></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <span>Pilih Profil Lulusan (Fokus)</span>
+          <div class="chips" id="profilChips">
+            <label class="chip"><input type="checkbox" value="Bernalar kritis" /> Bernalar kritis</label>
+            <label class="chip"><input type="checkbox" value="Kreatif" /> Kreatif</label>
+            <label class="chip"><input type="checkbox" value="Mandiri" /> Mandiri</label>
+            <label class="chip"><input type="checkbox" value="Bergotong royong" /> Bergotong royong</label>
+            <label class="chip"><input type="checkbox" value="Beriman dan berakhlak" /> Beriman & berakhlak</label>
+            <label class="chip"><input type="checkbox" value="Berkebinekaan global" /> Berkebinekaan global</label>
+          </div>
+        </div>
+
+        <div class="panel__foot panel__foot--split">
+          <button class="btn" id="back1">← Kembali</button>
+          <button class="btn btn--primary" id="toStep3">Lanjut ke Langkah 3 →</button>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="panel" id="panel3" hidden>
+        <div class="panel__head">
+          <h2>Langkah 3 — Generate Dokumen</h2>
+          <p>Klik generate untuk membuat struktur Modul Ajar & RPP, lalu unduh format DOCX.</p>
+        </div>
+
+        <div class="actionsRow">
+          <button class="btn btn--primary" id="btnGenerate" type="button">Generate Modul Ajar & RPP</button>
+          <button class="btn btn--soft" id="btnExport" type="button" disabled>Unduh DOCX</button>
+          <div class="status" id="status">Siap.</div>
+        </div>
+
+        <div class="preview" id="preview">
+          <div class="preview__empty">Belum ada hasil. Klik <b>Generate</b> dulu.</div>
+        </div>
+
+        <div class="panel__foot panel__foot--split">
+          <button class="btn" id="back2">← Kembali</button>
+          <button class="btn" id="copyJson">Salin JSON</button>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> AjarGen — UI template (style berbeda) + AI API connector</div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
